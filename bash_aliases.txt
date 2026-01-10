@@ -1,0 +1,3 @@
+alias webapp='cd "CSharpProjects" && cd "WebApp" && code ."
+alias access_webapp='cd "CSharpProjects" && cd "WebApp"'
+alias docker='docker rm -f webapp-dev && docker build -t webapp . && docker run -d -p 8080:8080 -e ASPNETCORE_ENVIRONMENT=Development --name webapp-dev webapp'
