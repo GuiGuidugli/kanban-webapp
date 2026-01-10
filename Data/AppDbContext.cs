@@ -55,7 +55,7 @@ public class AppDbContext : DbContext
         {
             var entity = (KanbanTask)entry.Entity;
 
-            if (entry.State == EntityState.Modified)
+            if (entry.State == EntityState.Added)
             {
                 entity.CreatedAt = DateTime.UtcNow;
                 entity.UpdatedAt = DateTime.UtcNow;
@@ -67,6 +67,6 @@ public class AppDbContext : DbContext
         }  
     }
 
-    
+
 
 }
