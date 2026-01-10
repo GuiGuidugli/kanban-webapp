@@ -47,6 +47,26 @@ public class AppDbContext : DbContext
 
     private void UpdateTimestamps()
     {
-       
+        var entries = ChangeTracker.Entries()
+            .Where(e => e.Entity is KanbanTask &&
+                        (e.State == EntityState.Added || e.State == EntityState.Modified));
+    
+        foreach (var entry in entries)
+        {
+            var entity = (KanbanTask)entry.Entity;
+
+            if (entry.State == EntityState.Modified)
+            {
+                entity.CreatedAt = DateTime.UtcNow;
+                entity.UpdatedAt = DateTime.UtcNow;
+            }
+            else if (entry.State == EntityState.Modified)
+            {
+                entity.UpdatedAt = DateTime.UtcNow;
+            }
+        }  
     }
+
+    
+
 }
